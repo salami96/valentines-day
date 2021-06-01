@@ -5,7 +5,7 @@ import { Data } from './data';
 
 export class App {
     private express: express.Application;
-    port = 9000;
+    port = 9000 || process.env.PORT;
 
     constructor() {
         this.express = express();
@@ -30,7 +30,7 @@ export class App {
             res.sendFile(path.resolve(__dirname, '..') + '/index.html');
         });
         this.express.use(express.static(path.resolve(__dirname, '..')));
-        this.express.listen(this.port || process.env.PORT, () => {
+        this.express.listen(this.port, () => {
             console.log('Server running in port: ' + this.port);
         })
     }
