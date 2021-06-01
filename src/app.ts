@@ -5,7 +5,7 @@ import { Data } from './data';
 
 export class App {
     private express: express.Application;
-    port = 9000 || process.env.PORT;
+    port = process.env.PORT || 9000;
 
     constructor() {
         this.express = express();
