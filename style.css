@@ -1,0 +1,26 @@
+body {
+    background: url('bg.jpg');
+    background-size: 500px auto;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+button {
+    position: fixed;
+    bottom: 1.5em;
+    box-shadow: 0 0 10px #ddd;
+    border-radius: 1.5em !important;
+}
+.right {
+    right: 1.5em;
+}
+.left {
+    left: 1.5em;
+}
+.hidden {
+    display: none;
+}
