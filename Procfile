@@ -1,1 +1,1 @@
-web: PHP -S
+web: npm run serve

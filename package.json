@@ -1,0 +1,30 @@
+{
+  "name": "valentines-day",
+  "version": "1.0.0",
+  "description": "Projetinho criado para integrar com a venda de doces da minha namorada: Junto com os doces vai um qr code, para uma pagina com fotos do casal e uma mensagem de amor ❤",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "sucrase ./src -d ./dist --transforms typescript,imports",
+    "serve": "node dist/index.js",
+    "postinstall": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salami96/valentines-day.git"
+  },
+  "author": "gabriel.zanatto2@gmail.com",
+  "license": "ISC",
+  "homepage": "https://github.com/salami96/valentines-day#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "sucrase": "^3.12.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.7",
+    "@types/express": "^4.17.7",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
