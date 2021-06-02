@@ -63,7 +63,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-        var param = location.search.replaceAll(/\D/g, '');
+        var param = getParameterByName('id');
+        console.log(param);
         $.getJSON(location.origin + '/get-data/' + param, (resp) => {
             console.log(resp);
         }, error => {
@@ -92,6 +93,16 @@
             $('.right').removeClass('hidden');
         }
         return id;
+    }
+    function getParameterByName( name ){
+        var regexS = "[\\?&]"+name+"=([^&#]*)", 
+        regex = new RegExp( regexS ),
+        results = regex.exec( window.location.search );
+        if( results == null ){
+            return "";
+        } else{
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
     }
 </script>
 
