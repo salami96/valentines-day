@@ -23,38 +23,7 @@
     <meta name="theme-color" content="#D63545">
 </head>
 <body>
-    <div class="container">
-        <div id="1" class="card clean-card animate__animated animate_fadeIn">
-            <h1 class="card-title">❤ Oi "O nome do seu amado(a) aqui" ❤</h1>
-        </div>
-        <div id="2" class="card clean-card animate__animated animate__fadeOut hidden">
-            <h1 class="card-title">❤ Seu texto 1 vai ficar aqui ❤</h1>
-        </div>
-        <div id="3" class="card clean-card animate__animated animate__fadeOut hidden">
-            <h1 class="card-title">❤ Seu texto 2 vai ficar aqui ❤</h1>
-        </div>
-        <div id="4" class="card clean-card animate__animated animate__fadeOut hidden">
-            <h1 class="card-title">❤ Seu texto 3 vai ficar aqui ❤</h1>
-        </div>
-        <div id="5" class="card clean-card animate__animated animate__fadeOut hidden">
-            <h1 class="card-title">❤ E assim por diante ❤</h1>
-        </div>
-        <div id="6" class="card clean-card animate__animated animate__fadeOut hidden p-1">
-            <img src="imgs/sua-foto.png" class="card-img">
-        </div>
-        <div id="7" class="card clean-card animate__animated animate__fadeOut hidden p-1">
-            <img src="imgs/sua-foto.png" class="card-img">
-        </div>
-        <div id="8" class="card clean-card animate__animated animate__fadeOut hidden p-1">
-            <img src="imgs/sua-foto.png" class="card-img">
-        </div>
-        <div id="9" class="card clean-card animate__animated animate__fadeOut hidden">
-            <h1 class="card-title">❤ Feliz dia dos Namorados ❤</h1>
-        </div>
-        <div id="10" class="card clean-card animate__animated animate__fadeOut hidden">
-            <h1 class="card-title">❤ Te amo muito ❤</h1>
-        </div>
-    </div>
+    <div class="container"></div>
     <button class="btn btn-danger btn-lg right">></button>
     <button class="btn btn-danger btn-lg left hidden"><</button>
 </body>
@@ -62,13 +31,41 @@
     crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
+    var count = 0;
     $(document).ready(function () {
-        var param = getParameterByName('id');
-        console.log(param);
+        var param = getParameterByName('id') || "default";
         $.getJSON(location.origin + '/get-data/' + param, (resp) => {
-            console.log(resp);
-        }, error => {
-            console.log(error);
+            count++;
+            $('.container').append(`
+                <div id="${count}" class="card clean-card animate__animated animate_fadeIn">
+                    <h1 class="card-title">❤ Oi ${resp.name} ❤</h1>
+                </div>
+            `);
+            for (const r of resp.text) {
+                count++;
+                $('.container').append(`
+                    <div id="${count}" class="card clean-card animate__animated animate__fadeOut hidden">
+                        <h1 class="card-title">❤ ${r} ❤</h1>
+                    </div>
+                `);
+            }
+            for (const r of resp.images) {
+                count++;
+                $('.container').append(`
+                    <div id="${count}" class="card clean-card animate__animated animate__fadeOut hidden p-1">
+                        <img src="${r}" class="card-img">
+                    </div>
+                `);
+            }
+            count++;
+            $('.container').append(`
+                <div id="${count}" class="card clean-card animate__animated animate__fadeOut hidden">
+                    <h1 class="card-title">❤ Feliz dia dos Namorados ❤</h1>
+                </div>
+                <div id="${++count}" class="card clean-card animate__animated animate__fadeOut hidden">
+                    <h1 class="card-title">❤ Te amo muito ❤</h1>
+                </div>
+            `);
         });
         var id = 1;
         $('.right').click(function () {
@@ -87,7 +84,7 @@
         } else {
             $('.left').removeClass('hidden');
         }
-        if (id === 10) {
+        if (id === count) {
             $('.right').addClass('hidden');
         } else {
             $('.right').removeClass('hidden');

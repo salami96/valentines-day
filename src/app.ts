@@ -27,7 +27,7 @@ export class App {
     private listen(): void {
         this.express.use('/get-data/:id', Data.getClient);
         this.express.get('/', function(req, res){
-            res.sendFile(path.resolve(__dirname, '..') + '/index.html');
+            res.sendFile(path.resolve(__dirname, '..') + '/src/index.html');
         });
         this.express.use(express.static(path.resolve(__dirname, '..')));
         this.express.listen(this.port, () => {

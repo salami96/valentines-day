@@ -24,12 +24,11 @@ export class Data {
 
         try {
             const { id } = req.params;
-            console.log(id);
             const resp = clients.find(c => c.id === id);
             if (resp){
                 return res.json(resp)
             } else {
-                return res.json(null);
+                return res.json(clients[0]);
             }
         } catch (erro) {
             next(erro);
